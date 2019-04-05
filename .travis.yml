@@ -1,6 +1,7 @@
 language: csharp
+dotnet: 2.1.502
 mono: none
-dotnet: 2.2.202
+env: DOTNETCORE=2  # optional, can be used to take different code paths in your script.
 script:
     - cd $TRAVIS_BUILD_DIR/FsRailway
     - dotnet restore
