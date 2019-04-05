@@ -1,8 +1,6 @@
-dist: bionic
 language: csharp
 mono: none
-sudo: required
-dotnet: 2.2
+dotnet: 2.2.202
 script:
     - cd $TRAVIS_BUILD_DIR/FsRailway
     - dotnet restore
