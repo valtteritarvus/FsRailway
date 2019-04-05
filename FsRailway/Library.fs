@@ -109,6 +109,24 @@ module Async =
     let bindAsyncToSync (a : Async<'a>) (b : 'a -> 'b) =
         a |> Async.RunSynchronously |> b
 
+    let bindTaskWhenAllToTask (a : Task<'a> seq) (b : 'a seq -> Task<'b>) =
+        task {
+            let! x =  a |> Task.WhenAll
+            return! b x
+        }
+
+    let bindAsyncParallelToAsync (a : Async<'a> seq) (b : 'a seq -> Async<'b>) =
+        task {
+            let! x =  a |> Async.Parallel
+            return! b x
+        }
+
+    let bindTaskWhenAllToSync (a : Task<'a> seq) (b : 'a seq -> 'b) =
+        a |> Task.WhenAll |> fun x -> x.Result |> b
+
+    let bindAsyncParallelToSync (a : Async<'a> seq) (b : 'a seq -> 'b) =
+        a |> Async.Parallel |> Async.RunSynchronously
+
 [<AutoOpenAttribute>]
 module Operators =
 
@@ -116,6 +134,8 @@ module Operators =
 
     module Task =
         let (|!>) = Async.bindTask
+        let (|!!!>) = Async.bindTaskWhenAllToTask
+        let (|!!!/>) = Async.bindTaskWhenAllToSync
         let (|!/>) = Async.bindTaskToSync
         let (|!?>) = Result.bindTask
         let (|?!>) = Result.bindSyncToTask
@@ -123,6 +143,8 @@ module Operators =
 
     module Async =
         let (|!>) = Async.bindAsync
+        let (|!!!>) = Async.bindAsyncParallelToAsync
+        let (|!!!/>) = Async.bindAsyncParallelToSync
         let (|!/>) = Async.bindAsyncToSync
         let (|!?>) = Result.bindAsync
         let (|?!>) = Result.bindSyncToAsync
