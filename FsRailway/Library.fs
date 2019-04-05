@@ -80,3 +80,18 @@ module Async =
 
     let bindAsync (a : Async<'a>) (b : 'a -> 'b) =
         a |> Async.RunSynchronously |> b
+
+[<AutoOpenAttribute>]
+module Operators =
+
+    let (|?>) = Result.bind
+
+    module Task =
+        let (|!>) = Async.bindTask
+        let (|!?>) = Result.bindTask
+        let (|?!>) = Result.bindSyncToTask
+
+    module Async =
+        let (|!>) = Async.bindAsync
+        let (|!?>) = Result.bindAsync
+        let (|?!>) = Result.bindSyncToAsync
