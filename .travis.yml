@@ -1,7 +1,7 @@
+dist: bionic
 language: csharp
 mono: none
 sudo: required
-dist: xenial
 dotnet: 2.2
 script:
     - cd $TRAVIS_BUILD_DIR/FsRailway
