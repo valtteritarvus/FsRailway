@@ -83,11 +83,21 @@ module Result =
             return x |> Result.mapError mapping
         }
 
+    let mapErrorTaskToSync (mapping : 'TError -> 'U) (a : Task<Result<'a, 'TError>>) =
+        a.Result |> Result.mapError mapping
+
     let mapErrorAsync (mapping : 'TError -> 'U) (a : Async<Result<'a, 'TError>>) =
         async {
             let! x = a
             return x |> Result.mapError mapping
         }
+
+    let mapErrorAsyncToSync (mapping : 'TError -> 'U) (a : Async<Result<'a, 'TError>>) =
+        async {
+            let! x = a
+            return x |> Result.mapError mapping
+        }
+        |> Async.RunSynchronously
 
 module Async =
 
