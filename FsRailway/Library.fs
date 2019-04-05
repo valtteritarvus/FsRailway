@@ -125,7 +125,7 @@ module Async =
         a |> Task.WhenAll |> fun x -> x.Result |> b
 
     let bindAsyncParallelToSync (a : Async<'a> seq) (b : 'a seq -> 'b) =
-        a |> Async.Parallel |> Async.RunSynchronously
+        a |> Async.Parallel |> Async.RunSynchronously |> b
 
 [<AutoOpenAttribute>]
 module Operators =
