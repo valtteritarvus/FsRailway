@@ -1,4 +1,4 @@
-language: fsharp
+language: csharp
 dotnet: 2.2
 script:
   - dotnet restore
