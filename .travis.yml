@@ -4,7 +4,7 @@ sudo: required
 dist: xenial
 dotnet: 2.2
 script:
-    - cd .\FsRailway
+    - cd .\\FsRailway\\
     - dotnet restore
     - dotnet build
 global:
