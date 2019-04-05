@@ -1,0 +1,12 @@
+RESTRICTION: == netcoreapp2.2
+NUGET
+  remote: https://api.nuget.org/v3/index.json
+    FSharp.Core (4.6.2)
+    Microsoft.NETCore.Platforms (2.2)
+    NETStandard.Library (2.0.3)
+      Microsoft.NETCore.Platforms (>= 1.1)
+    System.ValueTuple (4.5)
+    TaskBuilder.fs (2.1)
+      FSharp.Core (>= 4.1.17)
+      NETStandard.Library (>= 1.6.1)
+      System.ValueTuple (>= 4.4)

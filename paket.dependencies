@@ -1,0 +1,5 @@
+group Main
+    source https://api.nuget.org/v3/index.json
+    framework: netcoreapp2.2
+    nuget FSharp.Core
+    nuget TaskBuilder.fs
