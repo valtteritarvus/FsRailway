@@ -1,9 +1,10 @@
 module FsRailway
 
+open System.Threading.Tasks
+open FSharp.Control.Tasks.ContextInsensitive
+
 [<AutoOpenAttribute>]
 module Result =
-    open System.Threading.Tasks
-    open FSharp.Control.Tasks.ContextInsensitive
 
     let bindTask (a : Task<Result<'a, 'b>>) (b : 'a -> Task<Result<'c, 'b>>) =
         task {
@@ -71,3 +72,11 @@ module Result =
             let! x = a
             return x |> Result.mapError mapping
         }
+
+module Async =
+
+    let bindTask (a : Task<'a>) (b : 'a -> 'b) =
+        a.Result |> b
+
+    let bindAsync (a : Async<'a>) (b : 'a -> 'b) =
+        a |> Async.RunSynchronously |> b
