@@ -1,10 +1,6 @@
 language: csharp
+mono: none
 dotnet: 2.1.502
-env: DOTNETCORE=2  # optional, can be used to take different code paths in your script.
 script:
     - cd $TRAVIS_BUILD_DIR/FsRailway
     - dotnet restore
-    - dotnet build
-global:
-    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-    - DOTNET_CLI_TELEMETRY_OPTOUT=1
