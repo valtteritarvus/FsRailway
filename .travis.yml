@@ -1,7 +1,0 @@
-language: csharp
-mono: latest # for Paket only
-dotnet: 2.1.502
-script:
-    - mono .paket\paket.bootsrapper.exe
-    - cd $TRAVIS_BUILD_DIR/FsRailway
-    - dotnet restore
