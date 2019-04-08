@@ -1,0 +1,11 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+steps:
+- script: |
+    cd .\FsRailway
+    dotnet build
+  displayName: 'Build'
